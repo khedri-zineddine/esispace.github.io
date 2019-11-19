@@ -1,0 +1,54 @@
+.mainch {
+    text-align: left;
+    padding: 20px 2px;
+    border-radius: 3px;
+}
+
+._titrech {
+    display: block;
+    text-align: center;
+    left: 15px;
+    padding-left: 20px;
+    font-family: "Encode Sans Compressed", sans-serif;
+}
+
+._titrech>span {
+    overflow: hidden;
+    display: block;
+    margin: 0px 0 10px 0;
+}
+
+._titrech>span>span {
+    transform: skew(-50deg, 0);
+    display: block;
+    height: 7px;
+    width: 50%;
+    background-color: #1a1a1a;
+    margin: auto;
+}
+
+._titrech>h1 {
+    position: relative;
+    display: inline-block;
+    font-size: 22px;
+    line-height: 50px;
+    color: #1a1a1a;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding-right: 30px;
+    margin: 20px 0 0 0;
+}
+
+.containerch {
+    padding-top: 20px;
+}
+
+.containerch>form {
+    padding-bottom: 8px;
+}
+
+._bt {
+    width: 25%;
+    text-align: center;
+    margin: auto;
+}

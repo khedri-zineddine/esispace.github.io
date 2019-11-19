@@ -1,0 +1,48 @@
+._titreche {
+    display: block;
+    text-align: center;
+    left: 15px;
+    padding-left: 20px;
+    font-family: "Encode Sans Compressed", sans-serif;
+}
+
+._titreche>span {
+    overflow: hidden;
+    display: block;
+    margin: 0px 0 10px 0;
+}
+
+._titreche>span>span {
+    transform: skew(-50deg, 0);
+    display: block;
+    height: 7px;
+    width: 30%;
+    background-color: #1a1a1a;
+    margin: auto;
+}
+
+._titreche>h1 {
+    position: relative;
+    display: inline-block;
+    font-size: 22px;
+    line-height: 50px;
+    color: #1a1a1a;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding-right: 30px;
+    margin: 20px 0 0 0;
+}
+
+.moy {
+    width: 48%;
+}
+
+.calmoye {
+    padding-left: 70%;
+}
+
+.anne {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}

@@ -20,3 +20,94 @@
 .App-link {
   color: #09d3ac;
 }
+.__up-shmodule{
+    margin-bottom: -27px;
+    top:-10px;
+    z-index: 15;
+}
+._btn_smll__{
+    width:230px;
+    float: right;
+}
+.__inlnblc > .____inline{
+    display:inline-block;
+    width:49%;
+    float:left;
+}
+.__up-frmlmdl{
+    position:relative;
+    top:38px;
+    z-index:20;
+}
+._____hideall{
+    height:0px;
+    overflow:hidden;
+    transition:.3s ease;
+}
+#module_file_upload{
+    width:0px;
+    overflow:hidden;
+}
+.__sipver{
+  width:3px ;
+  background:#2bbca7;
+  height: 160px;
+}
+.__getlist,.__sipver,.__affliste{
+  display:inline-block;
+}
+.__affliste,.__getlist{
+  padding:15px;
+  width:48%;
+  text-align:left;
+}
+.__getlist{
+  float:left;
+}
+.__affliste{
+  float:right;
+}
+.crgetlst,.craflst{
+  position: relative;
+  float: left;
+  padding:5px;
+}
+.__strgetlst,.__strafftlst{
+  margin-top:8px;
+  margin-left:10px;
+}
+.___upcntrlaff{
+  top:5px;
+  z-index: 20;
+}
+._sptop-{
+  margin-top:-15px;
+}
+.__up-notes{
+  top: 40px;
+  z-index: 15;
+}
+._cntshwhid{
+  overflow: hidden;
+  height: 0px;
+}
+._calculmyn{
+  position: relative;
+  float: right;
+  margin-top: 8px;
+  margin-right: 10px;
+}
+._calculmyn>div{
+  display: inline-block;
+}
+.__inptshow{
+  position: relative;
+  height: 100%;
+  text-align: center;
+  border: 1px solid black;
+  padding: 2.3px 20px;
+  right: 6px;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 2px;
+}

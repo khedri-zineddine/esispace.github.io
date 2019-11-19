@@ -1,0 +1,332 @@
+._message_sent {
+    position: fixed;
+    bottom: 5px;
+    right: 15px;
+    width: 410px;
+    height: 420px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border: 1px solid #1a1a1a62;
+    box-shadow: 1px 1px 10px #1a1a1a67;
+    background: #fff;
+}
+
+._cntrlbtmsg {
+    width: 100%;
+    height: 50px;
+    background: #1a1a1a;
+    cursor: pointer;
+}
+
+._clsbtmsg {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    float: right;
+    top: 20px;
+    right: 10px;
+}
+
+._clsbtmsg>span {
+    position: relative;
+    float: right;
+    width: 30px;
+    height: 4px;
+    background: #13c0b2;
+}
+
+._clsbtmsg>span:first-child {
+    top: 3px;
+    left: 1px;
+    transform: rotate(45deg);
+}
+
+._clsbtmsg>span:last-child {
+    transform: rotate(135deg);
+}
+
+._nmmsg {
+    position: relative;
+    left: 10px;
+    top: 10px;
+    color: #13c0b2;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+._senttomsg {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    border-bottom: 1px solid #1a1a1a73;
+}
+
+._senttomsg>span {
+    position: relative;
+    vertical-align: middle;
+    left: 10px;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 20px;
+    top: 3px;
+    color: #1a1a1ac9;
+}
+
+._writto {
+    position: relative;
+    background: #1a1a1a18;
+    border-radius: 15px;
+    font-size: 17px;
+    padding-left: 12px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 2px;
+    width: 89%;
+    left: 13px;
+    display: inline-block;
+    min-height: 68%;
+    top: 10%;
+}
+
+*:focus {
+    outline: none;
+}
+
+._inptwrite {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    min-height: 75px;
+    max-height: 190;
+    border-top: 1px solid #1a1a1a3f;
+}
+
+._extwrite {
+    position: relative;
+    width: 100%;
+    padding: 0px 0px;
+    max-height: 155px;
+    min-height: 40px;
+}
+
+._inptmsgenv {
+    position: relative;
+    display: block;
+    width: 95%;
+    padding: 10px 10px;
+    max-height: 135px;
+    overflow-y: auto;
+    opacity: .5;
+}
+
+._inptmsgenv::-webkit-scrollbar-track,
+._cntallimg::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(2, 2, 2, 0.3);
+    background-color: #1a1a1a;
+}
+
+._inptmsgenv::-webkit-scrollbar,
+._cntallimg::-webkit-scrollbar {
+    width: 5px;
+    background-color: #1a1a1a;
+}
+
+._inptmsgenv::-webkit-scrollbar-thumb,
+._cntallimg::-webkit-scrollbar-thumb {
+    background-color: #1fbda5;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.5, transparent), to(transparent));
+}
+
+._elmeaddmsg {
+    position: relative;
+    width: 100%;
+    height: 35px;
+}
+
+._cnfsent {
+    position: relative;
+    float: right;
+    cursor: pointer;
+    transform: rotate(35deg);
+    top: 4px;
+    right: 15px;
+    width: 27px;
+    height: 27px;
+    overflow: hidden;
+    display: inline-block;
+}
+
+._elmfrm {
+    display: inline-block;
+}
+
+.__blcsent {
+    position: relative;
+    width: 27px;
+    margin-left: 7px;
+    display: inline-block;
+}
+
+._fil_ {
+    position: relative;
+    top: 2px;
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
+}
+
+._fil_ img {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+._nwimage {
+    position: relative;
+    overflow: hidden;
+    width: 0px;
+    height: 0px;
+}
+
+._cnfsent>img {
+    float: right;
+    width: 100%;
+    height: 100%;
+}
+
+._nmflup {
+    position: relative;
+    display: inline-block;
+    width: 69%;
+    height: 80%;
+    top: 10%;
+    background: #1a1a1a18;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+._nmflup>span {
+    position: absolute;
+    font-size: 17px;
+    left: 10px;
+    top: 4px;
+}
+
+._cntallimg {
+    max-height: 130px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+._imgselct {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    margin: 10px 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+._imgselct>img {
+    width: 100%;
+    height: 100%;
+    opacity: .9;
+    box-shadow: 1px 1px 2px #1a1a1a;
+}
+
+._supimgslc {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 23px;
+    height: 23px;
+    background: #1fbda5a1;
+    border-radius: 10px;
+    transition: .3s ease;
+    cursor: pointer;
+}
+
+._clsmsg {
+    top: -12px;
+    right: -12px;
+    background: #1fbda5c7;
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+}
+
+._supimgslc:hover {
+    box-shadow: 1px 1px 2px #1a1a1a7c;
+}
+
+._supimgslc>span {
+    position: absolute;
+    top: 10px;
+    right: 3px;
+    width: 18px;
+    height: 4px;
+    background: #1a1a1a;
+    border-radius: 3px;
+}
+
+._clsmsg>span {
+    top: 13px;
+    width: 24px;
+    height: 4px;
+}
+
+._supimgslc>span:first-child {
+    transform: rotate(45deg)
+}
+
+._supimgslc>span:last-child {
+    transform: rotate(135deg);
+}
+
+._fleblcdwnld {
+    position: relative;
+    display: inline-block;
+    height: 32px;
+    margin: 10px 7px 5px 7px;
+    max-width: 90%;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: #1a1a1a18;
+}
+
+._fleblcdwnld:last-child {
+    margin-right: 9px;
+}
+
+._fleblcdwnld>img {
+    position: relative;
+    top: -7px;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+._ssflp {
+    position: relative;
+    height: 100%;
+    margin-left: 2px;
+    margin-right: 2px;
+    max-width: 310px;
+    overflow: hidden;
+    display: inline-block;
+}
+
+._frsspan {
+    position: relative;
+    display: table;
+    height: 100%;
+    overflow: hidden;
+}
+
+._frsspan>div {
+    position: relative;
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 18px;
+    line-height: 30px;
+    bottom: 3px;
+}
