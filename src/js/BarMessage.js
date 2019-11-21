@@ -19,15 +19,6 @@ class BarMessage extends Component{
            ]
         }
     }
-    testajax(){
-        $.post('http://localhost:8000/api/test',{d:'sd'})
-        .done(function(data){
-            alert(data)
-        })
-        .fail(function(data){
-            alert('d')
-        })
-    }
     renderDataPgae() {
         return this.state.pgblocks.map((pgblock, index) => {
            const { link, imgsrc, text } = pgblock //destructuring
@@ -52,7 +43,6 @@ class BarMessage extends Component{
                 <div class="_list_block_number">
                     {this.renderDataPgae()}
                 </div>
-                <div class="test-ss" onClick={this.testajax}>dsdsds</div>
             </div>
             
         )

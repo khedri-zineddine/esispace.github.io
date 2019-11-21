@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import logo from './logo.svg';
 import $ from 'jquery';
+import { Redirect } from 'react-router-dom';
 import {
   BrowserRouter as Router,
   Switch,

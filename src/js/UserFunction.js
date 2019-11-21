@@ -1,19 +1,9 @@
 import axios from 'axios';
-import $ from 'jquery'
+import $ from 'jquery';
+import { Redirect } from 'react-router-dom';
 export const login = user =>{
-    $.ajax({
-        method: "POST",
-        url: "api/test",
-        data: { name: "John", location: "Boston" }
-        })
-        .done(function( msg ) {
-        alert( "Data Saved: " + msg );
-        })
-        .fail(function(){
-            alert('sd')
-        })
     return axios
-        .post('api/test',{
+        .post('http://127.0.0.1:8000/api/login',{
             email:user.email,
             motpass:user.motpass,
             typeuser:user.typeuser
@@ -21,8 +11,15 @@ export const login = user =>{
             headers:{'Content-type':'application/json'}
         })
         .then(res =>{
-            alert(res)
-            localStorage.setItem('user',res.data)
+            var userloged=res.data.data
+            if(userloged!=''){
+                localStorage.setItem('user', JSON.stringify(userloged));
+                window.location="/"
+                return userloged;
+            }else{
+                alert(userloged)
+                console.log(userloged)
+            }
         })
         .catch(err =>{
             alert(err)
@@ -40,4 +37,13 @@ export const getuser = () =>{
         .catch(err=>{
             alert(err)
         })
+}
+export const isLogin=()=>{
+    if(localStorage.getItem('user')){
+    }else{
+        window.location="/login"
+    }
+}
+export const Navuser=()=>{
+    alert('dsds')
 }

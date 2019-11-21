@@ -9,7 +9,7 @@ export default class OptionUser extends Component{
     logout(e){
         e.preventDefault();
         localStorage.removeItem('user')
-        this.props.history.push('/')
+        window.location="/login"
     }
      render() {
         return (
@@ -27,7 +27,7 @@ export default class OptionUser extends Component{
                             </a>
                         </div> 
                         <div className="name_option">
-                            <a className="rederect_vers" onClick={this.logout.bind(this)}>
+                            <a className="rederect_vers" onClick={this.logout}>
                                 <div className="_logo_option">
                                     <img src="img/logout.png"/>
                                 </div>
