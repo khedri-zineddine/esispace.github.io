@@ -105,7 +105,7 @@
 .__btncntnt{
    position: relative;
    margin-top:15px;
-   left:215px;
+   left:-5px;
 }
 .__btncntnt>button:last-child{
    position:relative;
@@ -174,7 +174,7 @@
    margin-top:-16px;
 }
 .up_-{
-   margin-top:0px;
+   top:25px;
 }
 .__shtble{
    position:relative;

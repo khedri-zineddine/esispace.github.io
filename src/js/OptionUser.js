@@ -21,7 +21,7 @@ export default class OptionUser extends Component{
                         <div className="name_option">
                             <a className="rederect_vers" href="/profile">
                                 <div className="_logo_option">
-                                    <img src="img/user.png"/>
+                                    <img src="/img/user.png"/>
                                 </div>
                                 <span>Profile</span>
                             </a>
@@ -29,7 +29,7 @@ export default class OptionUser extends Component{
                         <div className="name_option">
                             <a className="rederect_vers" onClick={this.logout}>
                                 <div className="_logo_option">
-                                    <img src="img/logout.png"/>
+                                    <img src="/img/logout.png"/>
                                 </div>
                                 <span>Deconexion</span>
                             </a>

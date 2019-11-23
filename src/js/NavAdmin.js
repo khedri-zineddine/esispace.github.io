@@ -12,18 +12,16 @@ class NavAdmin extends Component{
         super(props) //since we are extending class Table so we have to use super in order to override Component class constructor
         this.state = { //state is by default an object
            adminpgs: [
-              { imgsrc: 'img/man-user.png', text: 'Gestion des étudiants',drl:[
-                    {link: "/etudiant/show", imgsrc: 'img/liste.png', text: 'Liste étudiants'},
-                    {link: "/etudiant/add", imgsrc: 'img/inscreption.png', text: 'Inscréption'}
+              { imgsrc: '/img/man-user.png', text: 'Gestion des étudiants',drl:[
+                    {link: "/etudiant/add", imgsrc: '/img/inscreption.png', text: 'Inscréption'}
                 ]
               },
-              { imgsrc: 'img/manager.png', text: 'Gestion des enseig...',drl:[
-                    {link: "/enseignant/show", imgsrc: 'img/liste.png', text: 'Liste enseignant'},
-                    {link: "/enseignant/add", imgsrc: 'img/inscreption.png', text: 'Inscreption'}
+              { imgsrc: '/img/manager.png', text: 'Gestion des enseig...',drl:[
+                    {link: "/enseignant/add", imgsrc: '/img/inscreption.png', text: 'Inscreption'}
                 ]
                },
-               { imgsrc: 'img/content.png', text: 'Gestion des modules',drl:[
-                    {link: "/module/add", imgsrc: 'img/add.png', text: 'ajouter module'}
+               { imgsrc: '/img/content.png', text: 'Gestion des modules',drl:[
+                    {link: "/module/add", imgsrc: '/img/add.png', text: 'ajouter module'}
                 ]
                }
            ]
@@ -63,7 +61,7 @@ class NavAdmin extends Component{
            return (
                 <div className="_page_block _page_bloc_drl">
                     <div className="_dthov" onClick={() => this.drlslist(index)}>
-                        <span className="flch_ct"><img src="img/right-arrow.png" /></span>
+                        <span className="flch_ct"><img src="/img/right-arrow.png" /></span>
                         <a className="_page_link" title={text}>
                             <div className="_icon_page">
                                 <img className="_icon" alt="" src={imgsrc} title="" />

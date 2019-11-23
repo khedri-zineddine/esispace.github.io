@@ -14,8 +14,8 @@ class BarMessage extends Component{
         super(props) //since we are extending class Table so we have to use super in order to override Component class constructor
         this.state = { //state is by default an object
            pgblocks: [
-              { link: "/inbox", imgsrc: 'img/box.png', text: 'Boite de réception'},
-              { link: "/sent", imgsrc: 'img/email.png', text: 'Messages envoyés'}
+              { link: "/inbox", imgsrc: '/img/box.png', text: 'Boite de réception'},
+              { link: "/sent", imgsrc: '/img/email.png', text: 'Messages envoyés'}
            ]
         }
     }

@@ -72,9 +72,9 @@
   float: left;
   padding:5px;
 }
-.__strgetlst,.__strafftlst{
-  margin-top:8px;
-  margin-left:10px;
+.__strgetlst{
+  top:25px;
+  left:10px;
 }
 .___upcntrlaff{
   top:5px;

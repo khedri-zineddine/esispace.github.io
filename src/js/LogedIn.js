@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import BarShow from './BarShow';
 import BarMessage from './BarMessage';
 import AddEtudiant from './AddEtudiant';
-import ShowEtudiant from './ShowEtudiant';
 import AddEnseignant from './AddEnseignant';
 import AddModule from './AddModule';
 import AfficheNote from './AfficheNote';
@@ -19,13 +18,23 @@ import {
     Route,
     Link
   } from "react-router-dom";
+  if(localStorage.getItem('user')){
+    var session=JSON.parse(localStorage.getItem('user'));
+  }
 class LogedIn extends Component{
     constructor(props){
         super(props)
     }
     navUser(){
         if(localStorage.getItem('user')){
-            return(<NavAdmin/>)
+            switch(session.data_user){
+                case 'a':
+                    return(<NavAdmin/>)
+                case 'd':
+                    return(<NavEtudiant/>)
+                case 'n':
+                    return(<NavEnseignant/>)
+            }
         }
     }
      render() {
@@ -45,7 +54,7 @@ class LogedIn extends Component{
                                             </div>
                                         </div>
                                         <a class="guide-logo_img" href="/">
-                                        <img class="image_logo_name"  alt="esi-work-space" title="esi-space de l'usage de l'ecole" src="img/logo_project.png" /> 
+                                        <img class="image_logo_name"  alt="esi-work-space" title="esi-space de l'usage de l'ecole" src="/img/logo_project.png" /> 
                                         </a>
                                     </div>
                                     <div class="profile_control">
@@ -78,9 +87,6 @@ class LogedIn extends Component{
                                 </Route>
                                 <Route path="/etudiant/add">
                                     <AddEtudiant/>
-                                </Route>
-                                <Route path="/etudiant/show">
-                                    <ShowEtudiant/>
                                 </Route>
                                 <Route path="/enseignant/add">
                                     <AddEnseignant/>

@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import ListAffichage from './ListAffichage';
+import SentAffichage from './SentAffichage';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
 class AfficheNote extends Component{
      render() {
         return (
@@ -35,7 +42,7 @@ class AfficheNote extends Component{
                                         <div class="___ttgetlst">
                                             <h2 class="_4ebz">Obtenir la liste des etudiant</h2>
                                             <div class="descrb">dans cette etap vous devis selectioner l'annee et l'examen ou td qui tu vous l'afficher pour obtenir la liste des etudiant et le remplit les note (le fichier et excel ) </div>
-                                            <button class="__strgetlst _btn">Commencer</button>
+                                            <Link class="__strgetlst _btn" to="/affichage/getlist">Commencer</Link>
                                         </div>        
                                     </div>
                                 </div>
@@ -45,25 +52,21 @@ class AfficheNote extends Component{
                                         <div class="____ttafchlst">
                                             <h2 class="_4ebz">Afficher les notes qui vous avez déja remplit</h2>
                                             <div class="descrb">Selection le module concernent l'affichage et les note de quelle emd ou td et finalement selectioner le fichier excel qui vous avez </div>
-                                            <button class="__strafftlst _btn">Commencer</button>
+                                            <Link class="__strgetlst _btn" to="/affichage/sentlist">Commencer</Link>
                                         </div>    
                                     </div>
                                 </div>
                             </div> 
-                            <div class="_btnhideelem ___upcntrlaff">
-                                <img src="/img/right-arrow.png"/>
-                            </div>
-                            <hr class="_separe _sptop-"/>
-                            <div class="crlstaffch">
-                            <div class="Insc_head">
-                                <h1>Liste des affichage des notes</h1>
-                            </div>
-                            <div class="__listaffch-">
-                               
-                            </div>
-                            </div>
                         </div>
             </div>
+            <Switch>
+                <Route path="/affichage/getlist">
+                    <ListAffichage/>
+                </Route>
+                <Route path="/affichage/sentlist">
+                    <SentAffichage/>
+                </Route>
+            </Switch>
         </div>
 
         )

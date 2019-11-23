@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import {addmodule} from './ModuleFunction';
+import $ from 'jquery'
 class AddModule extends Component{
+    onSubmit(e){
+        e.preventDefault()
+        const modul = {
+            nommodule:$('#nmmdl').val(),
+            coff:$('#coff').val(),
+            annee:$('#andmdl').val(),
+            semestre:$('#smdmdl').val()
+        }
+        addmodule(modul)
+    }
      render() {
-        return (
-        
+        return (   
 <div class="cour_gd_module">
         <div class="_ttlttl">
             <span class="_btn" id="ttltl">ajouter des modules</span>
@@ -24,7 +34,7 @@ class AddModule extends Component{
         <h2>Formulaire pour ajouter un module</h2>
         </div>
             <div class="_rsltxlsx _sppd " >
-                <form action="addmodule.php" method="post" class="__addmodule" id="hideover">
+                <form onSubmit={this.onSubmit} method="post" class="__addmodule" id="hideover">
                     <div class="___blcline">
                         <div class="___clnblc">
                             <div class="_blc_frm _secndelem">

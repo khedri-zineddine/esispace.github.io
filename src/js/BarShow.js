@@ -18,12 +18,12 @@ class BarShow extends Component{
             <div>
                 <div class="BU_show">
                     <div class="img_profile">
-                        <img class="img/img_profile_user"  />
+                        <img class="img_profile_user"  />
                     </div>
                     <div class="name_user">
                         <span>{localStorage.getItem('user') ? session.nom+' '+session.prenom: ''}</span>
                         <span class="click_show" onClick={this.showbar} > 
-                            <img src="img/click_logo.png"/>  
+                            <img src="/img/click_logo.png"/>  
                         </span>
                     </div>
                 </div>

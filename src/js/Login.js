@@ -7,7 +7,6 @@ class Login extends Component{
         this.state ={
             email:'',
             motpass:'',
-            typeuser:'',
             errors:{}
         }
         this.onChange =this.onChange.bind(this)
@@ -20,8 +19,7 @@ class Login extends Component{
         e.preventDefault()
         const user = {
             email:this.state.email,
-            motpass:this.state.motpass,
-            typeuser:this.state.typeuser
+            motpass:this.state.motpass
         }
         var islog=login(user)
     }
@@ -46,14 +44,6 @@ class Login extends Component{
                             <div class="_blc_frm">
                                 <input type="password" id="mtpss" name="motpass" class="_motpass" value={this.state.motpass} onChange={this.onChange} autocomplete="off" required/>
                                 <label for="mtpss">Mot de pass</label>
-                            </div>
-                            <div class="_blc_frm">
-                                <span class="efet_slc"><img src="/img/right-arrow.png"/></span>
-                                <select class="ch_user" name="selectuser" value={this.state.typeuser} onChange={this.onChange}>
-                                    <option></option>
-                                    <option>Etudiant</option>
-                                    <option>Ensiegnant</option>
-                                </select>
                             </div>
                             <div class="_blc_frm">
                                 <input type="submit" value="Conexion" id="cnt_to" class="cnt_ct" name="cnt_to" required/>

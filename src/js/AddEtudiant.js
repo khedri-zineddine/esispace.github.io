@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import SignEtudiant from './SignEtudiant';
+if(localStorage.getItem('user')){
+    var session=JSON.parse(localStorage.getItem('user'));
+}
 class AddEtudiant extends Component{
      render() {
         return (
