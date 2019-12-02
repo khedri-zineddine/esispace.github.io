@@ -49,7 +49,7 @@ class ListAffichage extends Component{
                             <label>choiser l'annee</label>
                             <select name="annee" class="__stselectop" id="anne_selct">
                                 <option value="">Aucune selectioner</option>
-                                <option value="1cs">1 cpi</option>
+                                <option value="1">1 cpi</option>
                                 <option value="2">2 cpi</option>
                                 <option value="3">1 cs</option>
                                 <option value="4">2 cs</option>
@@ -60,8 +60,8 @@ class ListAffichage extends Component{
                             <label>choiser l'examen</label>
                             <select name="typeaffichage" class="__stselectop" id="exam_afich">
                                 <option value="">Aucune selectioner</option>
-                                <option value="ci">ci</option>
-                                <option value="cntr_final">examen finale</option>
+                                <option value="cntrl_intr">ci</option>
+                                <option value="cntrl_final">examen finale</option>
                                 <option value="td">td</option>
                             </select>
                         </div>

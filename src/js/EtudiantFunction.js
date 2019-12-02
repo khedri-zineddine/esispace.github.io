@@ -16,10 +16,11 @@ export const addetudiant = etudiant =>{
             annee:etudiant.annee,
             section:etudiant.section
         })
-        .done(function(res){
+        .done(res=>{
+            alert("l'etudiant et bien ajouter")
             return res.data;
         })
-        .fail(function(err){
+        .fail(err=>{
             console.log(err);
             return false;
         })

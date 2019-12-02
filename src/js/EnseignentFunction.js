@@ -15,6 +15,7 @@ export const addenseignant = enseignant =>{
             grade:enseignant.grade
         })
         .done(function(res){
+            alert("l'ensiegnent et bien ajouter")
             return res.data;
         })
         .fail(function(err){

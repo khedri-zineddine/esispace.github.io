@@ -15,6 +15,7 @@ export const addmodule = modul =>{
         .done(function(res){
             alert(res)
             console.log(res)
+            $('.__addmodule')[0].reset();
             return res.data;
         })
         .fail(function(err){

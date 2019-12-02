@@ -4,14 +4,15 @@ import { saveAs } from 'file-saver';
 import axios from 'axios'
 import XLSX from 'xlsx';
 import {Link} from "react-router-dom";
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 if(localStorage.getItem('user')){
     var session=JSON.parse(localStorage.getItem('user'));
 }
+var dataetudjson;
 function excel_to_json(e){
     var reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
     reader.onload = function() {
-        alert('dsds')
         var fileContent = reader.result;
         var url = fileContent;
         var oReq = new XMLHttpRequest();
@@ -35,19 +36,43 @@ function excel_to_json(e){
         var first_sheet_name = workbook.SheetNames[0];
         /* Get worksheet */
         var worksheet = workbook.Sheets[first_sheet_name];
-        var datajson = XLSX.utils.sheet_to_json(worksheet)
+        dataetudjson = XLSX.utils.sheet_to_json(worksheet)
+    }
+    oReq.send();
+    }
+}
+class SentAffichage extends Component{
+    constructor(props) {
+        super(props) //since we are extending class Table so we have to use super in order to override Component class constructor
+        this.state = { //state is by default an object
+           modules: <option>sqqds</option>
+        }
+    }
+    getModule(){
+        axios
+        .get("http://127.0.0.1:8000/api/module/getmodule")
+        .then(res=>{
+            console.log(res.data)
+            $('#__modul').append(res.data.data)
+        });
+        
+    }
+    cnfrmsent(e){
+        e.preventDefault()
+        console.log(dataetudjson)
+        alert($('#__modul').val())
         var notexam=null;
         var exam=null;
-        datajson.map(note=>{
-            if(note.ci){
-                notexam=note.ci
-                exam='ci';
+        dataetudjson.map(note=>{
+            if(note.cntrl_intr){
+                notexam=note.cntrl_intr
+                exam='cntrl_intr';
             }else if(note.td){
                 notexam=note.td
                 exam='td';
-            }else if(note.cntr_final){
-                notexam=note.cntr_final
-                exam='cntr_final';
+            }else if(note.cntrl_final){
+                notexam=note.cntrl_final
+                exam='cntrl_final';
             }
             axios 
             .post('/api/enseignent/addnote',{
@@ -55,7 +80,8 @@ function excel_to_json(e){
                 motpass:session.motpass,
                 email_etud:note.email,
                 exam:exam,
-                note:notexam
+                note:notexam,
+                idmodule:$('#__modul').val()
             })
             .then(res=>{
                 alert(res.data.data)
@@ -67,11 +93,6 @@ function excel_to_json(e){
             })
         })
     }
-    oReq.send();
-    }
-}
-class SentAffichage extends Component{
-    
      render() {
         return (
             <div class="cnfrmdl">
@@ -81,9 +102,9 @@ class SentAffichage extends Component{
         <div class="__crfinflstcr">
                 <div class="blcslctfrm">
                     <label>choiser le module</label>
-                    <select name="module" class="__stselectop" id="">
+                    <select name="module" class="__stselectop" id="__modul">
                         <option value="">Aucune selectioner</option>
-                        
+                        {this.getModule()}
                     </select>
                 </div>
                 <div class="blcslctfrm">
@@ -93,7 +114,7 @@ class SentAffichage extends Component{
         </div>
         <div class="__btncntnt">
             <Link to="/affichage" class="_btn __consultnt ___anlelemlst">annuler</Link>
-            <button class="_btn _btn_info __consultnt __suivntelem">Confirmer</button>
+            <button class="_btn _btn_info __consultnt __suivntelem" onClick={this.cnfrmsent}>Confirmer</button>
         </div>
     </div>
 </form>

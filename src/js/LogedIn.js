@@ -12,18 +12,37 @@ import Sent from './Sent';
 import NavAdmin from './NavAdmin';
 import NavEtudiant from './NavEtudiant';
 import NavEnseignant from './NavEnseignant';
+import ReduMessage from "./ReduMessage"
 import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Link,
+    Redirect
   } from "react-router-dom";
   if(localStorage.getItem('user')){
     var session=JSON.parse(localStorage.getItem('user'));
   }
 class LogedIn extends Component{
     constructor(props){
-        super(props)
+        super(props) //since we are extending class Table so we have to use super in order to override Component class constructor
+        this.state = { //state is by default an object
+            redumsg:false
+        }
+    }
+    redumsg(close){
+        if(!close){
+            this.setState({
+                redumsg:true
+            })
+        }else{
+            this.setState({
+                redumsg:false
+            }) 
+        }
+    }
+    toinbox(){
+        return 
     }
     navUser(){
         if(localStorage.getItem('user')){
@@ -68,7 +87,21 @@ class LogedIn extends Component{
                         <div class="_listAll">
                             <div class="_list_view">
                                 <div class="number_block">
-                                <BarMessage/>
+                                    <div classs="_elem_block">
+                                        <div class="_list_block_number">
+                                            <div className="_page_block">
+                                                <div className="_dthov">
+                                                    <a className="_page_link" onClick={() => this.redumsg(false)} >
+                                                        <div className="_icon_page">
+                                                            <img className="_icon" alt="" src="/img/plus.png" title="" />
+                                                        </div>
+                                                        <span>Nouveau message</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <BarMessage/>
                                 </div>
                                 <div class="number_block">
                                 {this.navUser()}
@@ -100,9 +133,21 @@ class LogedIn extends Component{
                                 <Route path="/notes">
                                     <MesNote/>
                                 </Route>
+                                <Route path="/">
+                                    <Redirect to='/inbox'/>
+                                </Route>
                             </Switch>
                         </div>
                         </div>
+                        {this.state.redumsg ? 
+                            <div class="_message_sent">
+                                <div class="_supimgslc _clsmsg" onClick={()=>this.redumsg(true)}>
+                                    <span></span>
+                                    <span></span>
+                                </div> 
+                                <ReduMessage/>
+                            </div> 
+                        :''}
                     </div>
             )
          }else{

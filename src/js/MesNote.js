@@ -1,7 +1,32 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import $ from 'jquery';
+import axios from 'axios'
+import {flash} from './UserFunction'
+if(localStorage.getItem('user')){
+    var session=JSON.parse(localStorage.getItem('user'));
+}
 class MesNote extends Component{
+    getNote(){
+        flash('alaways_','chargement des notes et en cours ...',false)
+        axios 
+        .post('http://127.0.0.1:8000/api/etudiant/mesnote',{
+            email:session.email,
+            motpass:session.motpass
+        })
+        .then(res=>{
+            $('#1smstr').append(res.data.data[0])
+            $('#2smstr').append(res.data.data[1])
+            flash('done_','vous notes et bien charger',true)
+            console.log(res)
+        })
+        .catch(err=>{
+            alert()
+            console.log(err)
+        })
+    }
      render() {
+         {this.getNote()}
         return (
             <div class="cour_mes_note">
             <div class="_ttlttl">
@@ -19,31 +44,28 @@ class MesNote extends Component{
                         <div class="_cours_elemnt">
                             <div class="_elmncrnt _elmntactv _cnhdsh">
                                     <div class="_crthisc">                      
-                                            <div class="_crthisc _elmntgrp">
-                                                <div class="_ttllst _blcelmntshw">
-                                                        <h2>LA TABLE DES NOTES DE 1ER SEMESTRE</h2>
-                                                        <p>Les notes à classer par chaque module si vous voulez consultez la note appuie sur consulter</p>
-                                                </div>
+                                        <div class="_crthisc _elmntgrp">
+                                            <div class="_ttllst _blcelmntshw">
+                                                    <h2>LA TABLE DES NOTES DE 1ER SEMESTRE</h2>
+                                                    <p>Les notes à classer par chaque module si vous voulez consultez la note appuie sur consulter</p>
                                             </div>
-                                         </div>
-                                <div class="table-responsive" id="1smstr">
+                                        </div>
+                                    </div>
+                                <div class="table-responsive" >
                                     <table class="table">
-                                        <tbody id="_mnltbletd">
+                                        <tbody id="_mnltbletd" id="1smstr">
                                             <tr class="_block_load">
                                                 <td class="_elem_load">
                                                     <div class="_lngtb">MODULE</div>
                                                 </td>
                                                 <td class="_elem_load" colspan="2">
-                                                    <div class="_lngtb" >EMD1</div>
+                                                    <div class="_lngtb" >CI</div>
                                                 </td>
                                                 <td class="_elem_load" colspan="2">
-                                                    <div class="_lngtb">EMD2</div>
+                                                    <div class="_lngtb">Cntrl_final</div>
                                                 </td>
                                                 <td class="_elem_load">
                                                     <div class="_lngtb">TD</div>
-                                                </td>
-                                                <td class="_elem_load">
-                                                    <div class="_lngtb">MOYENNE</div>
                                                 </td>
                                                 <td class="_elem_load">
                                                     <div class="_lngtb">COEF</div>
@@ -52,64 +74,45 @@ class MesNote extends Component{
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="_calculmyn">
-                                    <div class="__btnfrcalcul">
-                                        <button type="" class="_btn __getmoyen" id="get1smstrmoyn">Calculer la moyenne</button>
-                                    </div>
-                                    <div class="__inptshow">
-                                            <span>votre moyenne ici</span>
-                                    </div>
-                                </div>
                             </div>
                             <div class="_btnhideelem __up-notes">
                                 <img src="/img/right-arrow.png"/>
                             </div>
                             <hr class="_separe"/>
                             <div class="_elmncrnt _elmntactv ">
-                                    <div class="_crthisc">                      
-                                            <div class="_crthisc _elmntgrp">
-                                                <div class="_ttllst _blcelmntshw">
-                                                    <h2>LA TABLE DES NOTES DE 2eme SEMESTRE</h2>
-                                                    <p>Les notes à classer par chaque module si vous voulez consultez la note appuie sur consulter</p>
-                                                </div>
-                                            </div>
-                                         </div>
-                                         <div class="table-responsive" id="2smstr">
-                                            <table class="table">
-                                                <tbody id="_mnltbletd">
-                                                    <tr class="_block_load">
-                                                        <td class="_elem_load">
-                                                            <div class="_lngtb">MODULE</div>
-                                                        </td>
-                                                        <td class="_elem_load" colspan="2">
-                                                            <div class="_lngtb" >EMD1</div>
-                                                        </td>
-                                                        <td class="_elem_load" colspan="2">
-                                                            <div class="_lngtb">EMD2</div>
-                                                        </td>
-                                                        <td class="_elem_load">
-                                                            <div class="_lngtb">TD</div>
-                                                        </td>
-                                                        <td class="_elem_load">
-                                                            <div class="_lngtb">MOYENNE</div>
-                                                        </td>
-                                                        <td class="_elem_load">
-                                                            <div class="_lngtb">COEF</div>
-                                                        </td>
-                                                    </tr>
-                                                   
-                                                    
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                <div class="_calculmyn">
-                                        <div class="__btnfrcalcul">
-                                            <button type="" class="_btn __getmoyen" id="get2smstrmoyn">Calculer la moyenne</button>
-                                        </div>
-                                        <div class="__inptshow">
-                                                <span>votre moyenne ici</span>
+                                <div class="_crthisc">                      
+                                    <div class="_crthisc _elmntgrp">
+                                        <div class="_ttllst _blcelmntshw">
+                                            <h2>LA TABLE DES NOTES DE 2eme SEMESTRE</h2>
+                                            <p>Les notes à classer par chaque module si vous voulez consultez la note appuie sur consulter</p>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="table-responsive" >
+                                    <table class="table">
+                                        <tbody id="_mnltbletd" id="2smstr">
+                                            <tr class="_block_load">
+                                                <td class="_elem_load">
+                                                    <div class="_lngtb">MODULE</div>
+                                                </td>
+                                                <td class="_elem_load" colspan="2">
+                                                    <div class="_lngtb" >CI</div>
+                                                </td>
+                                                <td class="_elem_load" colspan="2">
+                                                    <div class="_lngtb">Cntrl_final</div>
+                                                </td>
+                                                <td class="_elem_load">
+                                                    <div class="_lngtb">TD</div>
+                                                </td>
+                                                <td class="_elem_load">
+                                                    <div class="_lngtb">COEF</div>
+                                                </td>
+                                            </tr>
+                                            
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
