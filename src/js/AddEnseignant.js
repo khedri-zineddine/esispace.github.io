@@ -1,13 +1,26 @@
 import React, { Component } from 'react';
 import $ from 'jquery'
-import {addenseignant} from './EnseignentFunction';
+import {flash} from './UserFunction';
+import Load from './../load.js';
+if(localStorage.getItem('user')){
+    var session=JSON.parse(localStorage.getItem('user'));
+}
 class AddEnseignant extends Component{
+    constructor(props) {
+        super(props)
+        this.state = { 
+           issent:false
+        }
+    }
     Getemail(email){
         var email='space_'+$('#prenom').val()[0]+'.'+$('#nom').val()+'@esi.dz';
         $('#email').val(email)
     }
     onSubmit(e){
         e.preventDefault()
+        this.setState({
+            issent:true
+        })
         const enseignant = {
             nom:$('#nom').val(),
             prenom:$('#prenom').val(),
@@ -16,7 +29,29 @@ class AddEnseignant extends Component{
             date_recrt:$('#daterec').val(),
             grade:$('#grade').val()
         }
-        addenseignant(enseignant)
+        if(session){
+            flash('alaways_',"l'inscription de l'ensiegnant est en cours ...",false)
+            $.post('http://127.0.0.1:8000/api/enseignent/add',{
+                email:session.email,
+                motpass:session.motpass,
+                nom:enseignant.nom,
+                prenom:enseignant.prenom,
+                email_ens:enseignant.email_etud,
+                date_ns:enseignant.date_ns,
+                date_recrt:enseignant.date_recrt,
+                grade:enseignant.grade
+            })
+            .done(res=>{
+                flash('done_',"l'ensiegnant et bien inscrir",true)
+                this.setState({
+                    issent:false
+                })
+                $('.profinscr')[0].reset();
+            })
+            .fail(function(err){
+                flash('fail_',"il y'a un erreur de conexion",true)
+            })
+        }
     }
      render() {
         return (
@@ -26,13 +61,18 @@ class AddEnseignant extends Component{
                 </div>
                 <div class="container_1">
                     <div class="Insc_head">
-                        <div id="img_head"><img src="fonts/img/enter.png" id="img_head_zone"/>
-                        </div>
                         <h1>Inscription des enseignants</h1>
                         <h2>Formulaire pour inscrir les nouveaux enseignants</h2>
                     </div>
                     <div class="colonne_1">
-                        <form  method="post" class="profinscr" onSubmit={this.onSubmit}>
+                        <form   class="profinscr" onSubmit={(e)=>this.onSubmit(e)}>
+                            {this.state.issent ? 
+                                <div className="ffr_ld big-hg">
+                                    <div>
+                                        <Load/>
+                                    </div> 
+                                </div>
+                            : ''  }
                             <div class="___blcline">
                                 <div class="___clnblc">
                                     <div class="_blc_frm _secndelem">

@@ -1,16 +1,49 @@
 import React, { Component } from 'react';
-import {addmodule} from './ModuleFunction';
 import $ from 'jquery'
+import {flash} from './UserFunction';
+import Load from './../load.js';
+if(localStorage.getItem('user')){
+    var session=JSON.parse(localStorage.getItem('user'));
+}
 class AddModule extends Component{
+    constructor(props) {
+        super(props)
+        this.state = { 
+           issent:false
+        }
+    }
     onSubmit(e){
         e.preventDefault()
+        this.setState({
+            issent:true
+        })
         const modul = {
             nommodule:$('#nmmdl').val(),
             coff:$('#coff').val(),
             annee:$('#andmdl').val(),
             semestre:$('#smdmdl').val()
         }
-        addmodule(modul)
+        if(session){
+            flash('alaways_',"votre module est en cours de l'ajoute ...",false)
+            $.post('http://127.0.0.1:8000/api/module/add',{
+                email:session.email,
+                motpass:session.motpass,
+                nommodule:modul.nommodule,
+                coff:modul.coff,
+                annee:modul.annee,
+                semestre:modul.semestre
+            })
+            .done(res=>{
+                flash('done_',"le module et bien ajouter",true)
+                $('.__addmodule')[0].reset();
+                this.setState({
+                    issent:false
+                })
+            })
+            .fail(function(err){
+                flash('fail_',"il y'a un erreur de conexion",true)
+            })
+        }
     }
      render() {
         return (   
@@ -34,7 +67,14 @@ class AddModule extends Component{
         <h2>Formulaire pour ajouter un module</h2>
         </div>
             <div class="_rsltxlsx _sppd " >
-                <form onSubmit={this.onSubmit} method="post" class="__addmodule" id="hideover">
+                <form onSubmit={(e)=>this.onSubmit(e)}  class="__addmodule" id="hideover">
+                    {this.state.issent ? 
+                        <div className="ffr_ld big-hg">
+                            <div>
+                                <Load/>
+                            </div> 
+                        </div>
+                    : ''  }
                     <div class="___blcline">
                         <div class="___clnblc">
                             <div class="_blc_frm _secndelem">

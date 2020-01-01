@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
 import $ from 'jquery'
+import Load from './../load.js';
 import {
     Switch,
     Route,
@@ -20,21 +20,20 @@ class Sent extends Component{
     }
     getmsg(){
         flash('alaways_','chargement des message et en cours ...',false)
-        axios
-        .post('/api/message/sent',{
+        $.post('/api/message/sent',{
             email:session.email,
             motpass:session.motpass
         })
-        .then(res=>{
+        .done(res=>{
             flash('done_','fin de chargement',true)
-            var lstmsg=res.data.data.msg
+            var lstmsg=res.data.msg
             this.setState({
                 lstmsg
             })
             console.log(res)
-           $('.nb__msg').html(res.data.data.nb)
+           $('.nb__msg').html(res.data.nb)
        })
-       .catch(err=>{
+       .fail(err=>{
            console.log(err)
        })
     } 
@@ -75,7 +74,7 @@ class Sent extends Component{
                                         </div>
                                     )
                                 }) :<strong>vous avez envoyer aucun message</strong>
-                             :'en cours de chargement de donné' }
+                             :<Load/> }
                         </Route>
                     </Switch>
                     </div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import Load from './../load.js';
 import $ from 'jquery'
 import {
     Switch,
@@ -19,20 +19,20 @@ class Inbox extends Component{
     }
     getmsg(){
         flash('alaways_','chargement des message et en cours ...',false)
-        axios
-        .post('/api/message/inbox',{
+        
+        $.post('/api/message/inbox',{
             email:session.email,
             motpass:session.motpass
         })
-        .then(res=>{
+        .done(res=>{
             flash('done_','fin de chargement',true)
-            var lstmsg=res.data.data.msg
+            var lstmsg=res.data.msg
             this.setState({
                 lstmsg
             })
-           $('.nb__msg').html(res.data.data.nb)
+           $('.nb__msg').html(res.data.nb)
        })
-       .catch(err=>{
+       .fail(err=>{
            console.log(err)
        })
     } 
@@ -73,7 +73,7 @@ class Inbox extends Component{
                                     </div>
                                 )
                             }) :<strong>vous avez aucun message recevoir</strong>
-                             :'en cours de chargement de donné' }
+                             :<Load/> }
                         </Route>
                     </Switch>
                     </div>

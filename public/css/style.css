@@ -2,9 +2,19 @@ a:hover{
 cursor:pointer;
 }
 #tbletudiant{
+    position: absolute;
     visibility: hidden;
     opacity: 0;
     height: 0px;
+    width:0px;
+    overflow: hidden;
+}
+#tbletudiant>tbody{
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    height: 0px;
+    width:0px;
     overflow: hidden;
 }
 #img_head img{
@@ -70,8 +80,9 @@ h5{
 ._secndelem>label{
     font-weight: 400;
     font-size: 17px;
-    top: 17px;
-    left: 18px;
+    background: white;
+    top: 15px;
+    left: 30px;
 }
 .__semivalid{
     top: -8px;

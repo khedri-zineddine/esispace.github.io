@@ -1,37 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Load from './../load.js';
 import $ from 'jquery';
 import {
     Link
   } from "react-router-dom";
 if(localStorage.getItem('user')){
     var session=JSON.parse(localStorage.getItem('user'));
-}
-export const login = user =>{
-    flash('alaways_','en cours de conexion ...',false)
-    return axios
-        .post('http://127.0.0.1:8000/api/login',{
-            email:user.email,
-            motpass:user.motpass,
-            typeuser:user.typeuser
-        },{
-            headers:{'Content-type':'application/json'}
-        })
-        .then(res =>{
-            var userloged=res.data.data
-            if(userloged!=''){
-                localStorage.setItem('user', JSON.stringify(userloged));
-                flash('done_','votre conexion et valid',true)
-                window.location="/"
-                return userloged;
-            }else{
-                alert(userloged)
-                console.log(userloged)
-            }
-        })
-        .catch(err =>{
-            alert(err)
-        })
 }
 class Selectmsg extends Component{
     constructor(props) {
@@ -117,7 +92,8 @@ class Selectmsg extends Component{
     }
     render(){
         return(
-            <div class="_rdmsg">{this.state.msg}</div>
+            <div class="_rdmsg">{this.state.msg ? this.state.msg
+            : <Load/>}</div>
         )
     }
 

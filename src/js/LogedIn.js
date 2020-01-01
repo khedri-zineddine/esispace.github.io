@@ -84,30 +84,30 @@ class LogedIn extends Component{
                         </nav>
                     </header>
                         <div class="list_option">
-                        <div class="_listAll">
-                            <div class="_list_view">
-                                <div class="number_block">
-                                    <div classs="_elem_block">
-                                        <div class="_list_block_number">
-                                            <div className="_page_block">
-                                                <div className="_dthov">
-                                                    <a className="_page_link" onClick={() => this.redumsg(false)} >
-                                                        <div className="_icon_page">
-                                                            <img className="_icon" alt="" src="/img/plus.png" title="" />
-                                                        </div>
-                                                        <span>Nouveau message</span>
-                                                    </a>
+                            <div class="_listAll">
+                                <div class="_list_view">
+                                    <div class="number_block">
+                                        <div classs="_elem_block">
+                                            <div class="_list_block_number">
+                                                <div className="_page_block">
+                                                    <div className="_dthov">
+                                                        <a className="_page_link" onClick={() => this.redumsg(false)} >
+                                                            <div className="_icon_page">
+                                                                <img className="_icon" alt="" src="/img/plus.png" title="" />
+                                                            </div>
+                                                            <span>Nouveau message</span>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <BarMessage/>
                                     </div>
-                                    <BarMessage/>
-                                </div>
-                                <div class="number_block">
-                                {this.navUser()}
-                                </div>
-                            </div>  
-                        </div>
+                                    <div class="number_block">
+                                    {this.navUser()}
+                                    </div>
+                                </div>  
+                            </div>
                         </div>
                         <div id="gread_contenair_option">
                         <div class="cour_page_select" id="cour_page_sel">

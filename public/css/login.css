@@ -125,7 +125,7 @@ body {
 ._blc_chs>input:focus~label {
     top: -8px;
     background: white;
-    font-size: .8em;
+    font-size: 1em;
     color: #11b8ab;
 }
 
@@ -133,7 +133,7 @@ body {
 ._blc_chs>input:valid~label {
     top: -8px;
     background: white;
-    font-size: .8em;
+    font-size:1em;
     color: #11b8ab;
 }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery'
 import axios from 'axios';
+import Load from './../load.js';
 import {
     Link
   } from "react-router-dom";
@@ -45,6 +46,9 @@ function postfile(data){
 class ReduMessage extends Component {
     constructor(props){
         super(props);
+        this.state = { //state is by default an object
+            issent:false
+         }
      }
     FocusWrite(){
         $('._inptmsgenv').css({
@@ -76,8 +80,11 @@ class ReduMessage extends Component {
         postfile(formData)
     }
     sentmsg(){
-        flash('alaways_',"votre message en cours de l'envoi ...",false)
-        axios
+        this.setState({
+            issent:true
+        })
+        flash('alaways_',"votre message en cours de l'envoi ...",false);
+         axios
          .post('/api/message/sentmsg',{
              to:$('._writto').html(),
              sent:session.email,
@@ -85,17 +92,21 @@ class ReduMessage extends Component {
              lstfl:listfile
          })
          .then(res=>{
+            this.setState({
+                issent:false
+            })
              if(res.data.data=="vous pouver envoyer des message que a des utilisateur de l'ecole"){
                 flash('fail_',"vous pouver envoyer des message que a des utilisateur de l'ecole",true)
              }else if(res.data.data=="votre message et bien envoyer"){
                 flash('done_',"votre message et bien envoyer",true)
+                $('._inptmsgenv').html('Taper votre message')
+
              }else{
                 flash('done_',"il y'a un erreur de conexion esseyer plus tard",true)
              }
          })
          .catch(err=>{
             flash('fail_',"votre message n'est pas envoyer",false)
-            console.log(err)
          })
     }
     shwhid(){
@@ -109,64 +120,72 @@ class ReduMessage extends Component {
     }
      render() {
         return (   
-    <div>
-    <div class="_cntrlbtmsg" onClick={this.shwhid}>
-        <div class="_nmmsg">
-            <span>Nouveau Message</span>
-        </div>
-    </div>
-    <div class="_senttomsg">
-        <span>A:</span>
-        <span class="_writto"  id="__inpttosent" contenteditable="true">
-
-        </span>
-    </div>
-    <div class="_cntallimg">
-        <div class="___img">
-
-        </div>
-        <div class="___doc">
-
-        </div>
-
-    </div>
-    <div class="_inptwrite">
-        <div class="_extwrite" >
-            <span class="_inptmsgenv" onFocus={this.FocusWrite} onBlur={this.BlurWrite} contenteditable="true">Taper votre message</span>
-        </div>
-        <div class="_elmeaddmsg">
-            <div class="_elmfrm">
-                <div class="__blcsent">
-                    <form class="_elmfrmimg" method="post" enctype="multipart/form-data">
-                        <div class="_fil_">
-                            <label for="addimage" class="">
-                                <img src="/img/addimage.png" alt=""/> 
-                            </label>
-                        </div>
-                        <input type="file" name="addimage" id="addimage" onChange={(e) => this.moveImg(e)} class="_nwimage" accept=".jpg,.png,.jpeg"/>
-                        
-                    </form>
+            <div>
+                {this.state.issent ?
+                    <div className="ffr_ld">
+                        <div>
+                            <Load/>
+                        </div> 
+                    </div>
+                    : ''
+                }
+                
+                <div class="_cntrlbtmsg" onClick={this.shwhid}>
+                    <div class="_nmmsg">
+                        <span>Nouveau Message</span>
+                    </div>
                 </div>
-                <div class="__blcsent">
-                    <form class="_elmfrmdoc" method="post" enctype="multipart/form-data">
-                        <div class="_fil_">
-                            <label for="adddocm" class="">
-                                <img src="/img/adddoc.png" alt="" class=""/>
-                            </label>
+                <div class="_senttomsg">
+                    <span>A:</span>
+                    <span class="_writto"  id="__inpttosent" contenteditable="true">
+
+                    </span>
+                </div>
+                <div class="_cntallimg">
+                    <div class="___img">
+
+                    </div>
+                    <div class="___doc">
+
+                    </div>
+
+                </div>
+                <div class="_inptwrite">
+                    <div class="_extwrite" >
+                        <span class="_inptmsgenv" onFocus={this.FocusWrite} onBlur={this.BlurWrite} contenteditable="true">Taper votre message</span>
+                    </div>
+                    <div class="_elmeaddmsg">
+                        <div class="_elmfrm">
+                            <div class="__blcsent">
+                                <form class="_elmfrmimg" method="post" enctype="multipart/form-data">
+                                    <div class="_fil_">
+                                        <label for="addimage" class="">
+                                            <img src="/img/addimage.png" alt=""/> 
+                                        </label>
+                                    </div>
+                                    <input type="file" name="addimage" id="addimage" onChange={(e) => this.moveImg(e)} class="_nwimage" accept=".jpg,.png,.jpeg"/>
+                                    
+                                </form>
+                            </div>
+                            <div class="__blcsent">
+                                <form class="_elmfrmdoc" method="post" enctype="multipart/form-data">
+                                    <div class="_fil_">
+                                        <label for="adddocm" class="">
+                                            <img src="/img/adddoc.png" alt="" class=""/>
+                                        </label>
+                                    </div>
+                                    <input type="file" id="adddocm" class="_nwimage" onChange={this.movDoc} name="addimage"/>
+                                </form>
+                            </div>
                         </div>
-                        <input type="file" id="adddocm" class="_nwimage" onChange={this.movDoc} name="addimage"/>
-                    </form>
+                        <div class="_nmflup">
+                        </div>
+                        <div class="_cnfsent" onClick={() => this.sentmsg()}>
+                            <img src="/img/email.png" alt="" class=""/>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="_nmflup">
-                <span class="">Aucun fichier a éte selectioner</span>
-            </div>
-            <div class="_cnfsent" onClick={this.sentmsg}>
-                <img src="/img/email.png" alt="" class=""/>
-            </div>
-        </div>
-    </div>
-</div>
         )
      }
 }

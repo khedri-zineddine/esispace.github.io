@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import axios from 'axios'
 import {flash} from './UserFunction'
+import Load from './../load.js';
 if(localStorage.getItem('user')){
     var session=JSON.parse(localStorage.getItem('user'));
 }
 class MesNote extends Component{
+    constructor(props) {
+        super(props) //since we are extending class Table so we have to use super in order to override Component class constructor
+        this.state = { //state is by default an object
+           smstr1:this.getNote(),
+           smstr2:null
+        }
+    }
     getNote(){
         flash('alaways_','chargement des notes et en cours ...',false)
         axios 
@@ -15,14 +24,14 @@ class MesNote extends Component{
             motpass:session.motpass
         })
         .then(res=>{
-            $('#1smstr').append(res.data.data[0])
-            $('#2smstr').append(res.data.data[1])
+            this.setState({
+                smstr1:ReactHtmlParser(res.data.data[0]),
+                smstr2:ReactHtmlParser(res.data.data[1])
+            })
             flash('done_','vous notes et bien charger',true)
-            console.log(res)
         })
         .catch(err=>{
-            alert()
-            console.log(err)
+            flash('fail_','il y a un erreur esseyer plus tard',true)
         })
     }
      render() {
@@ -71,8 +80,12 @@ class MesNote extends Component{
                                                     <div class="_lngtb">COEF</div>
                                                 </td>
                                             </tr>
+                                            {this.state.smstr1 ? this.state.smstr1
+                                            : '' }
                                         </tbody>
                                     </table>
+                                    {this.state.smstr1 ? ''
+                                    : <Load/> }
                                 </div>
                             </div>
                             <div class="_btnhideelem __up-notes">
@@ -109,9 +122,12 @@ class MesNote extends Component{
                                                 </td>
                                             </tr>
                                             
-                                            
+                                            {this.state.smstr2 ? this.state.smstr2
+                                            : '' }
                                         </tbody>
                                     </table>
+                                    {this.state.smstr2 ? ''
+                                    : <Load/> }
                                 </div>
                             </div>
                         </div>
