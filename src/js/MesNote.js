@@ -24,6 +24,7 @@ class MesNote extends Component{
             motpass:session.motpass
         })
         .then(res=>{
+            console.log(res.data)
             this.setState({
                 smstr1:ReactHtmlParser(res.data.data[0]),
                 smstr2:ReactHtmlParser(res.data.data[1])
@@ -35,7 +36,6 @@ class MesNote extends Component{
         })
     }
      render() {
-         {this.getNote()}
         return (
             <div class="cour_mes_note">
             <div class="_ttlttl">
